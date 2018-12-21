@@ -4,7 +4,7 @@ Chinese low cost eval board
 ## Description
 
 Images
-![ADAU1452_DSP](hhttps://raw.githubusercontent.com/tecteun/ADAU1452_DSP/master/board.jpg "Logo ADAU1452_DSP")
+![ADAU1452_DSP](https://raw.githubusercontent.com/tecteun/ADAU1452_DSP/master/board.jpg "Logo ADAU1452_DSP")
 
 
 ## EEPROM ID
