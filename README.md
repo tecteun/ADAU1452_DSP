@@ -16,10 +16,12 @@ Chinese low cost eval board
     L= 1.7V min
 
 ### SigmaStudio EEPROM properties
+
 I2C
-Memory size: 262144bits
-Page size: 64bytes
-Write speed: 1000Khz (or lower)
-Number of Adress Bytes: 2
+
+    Memory size: 262144bits
+    Page size: 64bytes
+    Write speed: 1000Khz (or lower)
+    Number of Adress Bytes: 2
 
 ## Persist firmware with SigmaStudio
