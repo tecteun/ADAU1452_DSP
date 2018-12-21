@@ -6,14 +6,14 @@ Chinese low cost eval board
 Images
 
 ## EEPROM ID
-А в ДШ заглянуть?
+    А в ДШ заглянуть?
 
-ATML=ATMEL
-H= Industrial/NiPdAu fymish
-5= 2015 год
-46 = 46я неделя
-2EC=AT24C256C
-L= 1.7V min
+    ATML=ATMEL
+    H= Industrial/NiPdAu fymish
+    5= 2015 год
+    46 = 46я неделя
+    2EC=AT24C256C
+    L= 1.7V min
 
 ### SigmaStudio EEPROM properties
 I2C
