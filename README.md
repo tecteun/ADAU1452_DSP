@@ -25,3 +25,8 @@ I2C
     Number of Adress Bytes: 2
 
 ## Persist firmware with SigmaStudio
+
+The jumper in the picture is set to write protect.
+Switch it to the other position while writing the firmware in Sigmastudio with
+
+	'Self-boot memory -> Write latest Compilation through DSP'
