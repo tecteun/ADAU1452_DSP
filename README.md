@@ -38,7 +38,7 @@ Switch it to the other position while writing the firmware in Sigmastudio with
 
 ## Todo
 
-    Figure out how to use the unpopulated sram spot
+    Figure out how to use the unpopulated SRAM spot
     with 23A1024 or similar
     https://docs.rs-online.com/5f59/0900766b8114ca33.pdf
     First tests show that this board is designed to use the ADAU1452 master SPI bus with either:
