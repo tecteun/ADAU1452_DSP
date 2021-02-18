@@ -32,3 +32,14 @@ The jumper in the picture is set to write protect.
 Switch it to the other position while writing the firmware in Sigmastudio with
 
 	'Self-boot memory -> Write latest Compilation through DSP'
+
+
+## Todo
+
+    Figure out how to use the unpopulated sram spot
+    with 23A1024 or similar
+    https://docs.rs-online.com/5f59/0900766b8114ca33.pdf
+    First tests show that this board is designed to use the ADAU1452 master SPI bus with either:
+    - `EEPROM`
+    - `SRAM`
+    not both together. (`SS_M/MP0` does not have any select logic behind it)
