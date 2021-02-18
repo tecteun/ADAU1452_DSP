@@ -46,5 +46,10 @@ Switch it to the other position while writing the firmware in Sigmastudio with
 
 ## Links
 
-    https://github.com/Ark-Linux/sigma-tcp
-    https://github.com/MCUdude/SigmaDSP
+### Sigma-tcp with SPI
+
+https://github.com/Ark-Linux/sigma-tcp
+
+### Other
+
+https://github.com/MCUdude/SigmaDSP
