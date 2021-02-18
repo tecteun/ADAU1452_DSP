@@ -1,6 +1,8 @@
 # ADAU1452_DSP
 Chinese low cost eval board
-Supposedly based on https://github.com/ohdsp/DSP-ADAU1452/blob/master/Drawings/Schematic/DSP-ADAU1452-2.0-Schematic.pdf
+Supposedly based on 
+
+https://github.com/ohdsp/DSP-ADAU1452/blob/master/Drawings/Schematic/DSP-ADAU1452-2.0-Schematic.pdf
 (https://www.diyaudio.com/forums/digital-line-level/309680-low-cost-adau1452-china-board-2.html)
 
 ## Description
@@ -52,5 +54,5 @@ https://github.com/Ark-Linux/sigma-tcp
 
 ### Other
 
-https://github.com/aventuri/sigma_tcp
-https://github.com/MCUdude/SigmaDSP
+- https://github.com/aventuri/sigma_tcp
+- https://github.com/MCUdude/SigmaDSP
