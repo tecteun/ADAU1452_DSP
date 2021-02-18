@@ -52,4 +52,5 @@ https://github.com/Ark-Linux/sigma-tcp
 
 ### Other
 
+https://github.com/aventuri/sigma_tcp
 https://github.com/MCUdude/SigmaDSP
