@@ -1,5 +1,7 @@
 # ADAU1452_DSP
 Chinese low cost eval board
+Supposedly based on https://github.com/ohdsp/DSP-ADAU1452/blob/master/Drawings/Schematic/DSP-ADAU1452-2.0-Schematic.pdf
+(https://www.diyaudio.com/forums/digital-line-level/309680-low-cost-adau1452-china-board-2.html)
 
 ## Description
 ![ADAU1452_DSP](https://raw.githubusercontent.com/tecteun/ADAU1452_DSP/master/board.jpg "Logo ADAU1452_DSP")
