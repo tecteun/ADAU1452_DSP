@@ -7,6 +7,7 @@ https://github.com/ohdsp/DSP-ADAU1452/blob/master/Drawings/Schematic/DSP-ADAU145
 
 ## Description
 ![ADAU1452_DSP](https://raw.githubusercontent.com/tecteun/ADAU1452_DSP/master/board.jpg "Logo ADAU1452_DSP")
+![ADAU1452_DSP](https://raw.githubusercontent.com/tecteun/ADAU1452_DSP/master/board2.jpg "Logo ADAU1452_DSP")
 
 
 ## EEPROM ID
