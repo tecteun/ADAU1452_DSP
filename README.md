@@ -6,7 +6,11 @@ https://github.com/ohdsp/DSP-ADAU1452/blob/master/Drawings/Schematic/DSP-ADAU145
 (https://www.diyaudio.com/forums/digital-line-level/309680-low-cost-adau1452-china-board-2.html)
 
 ## Description
+
+### rev 1
 ![ADAU1452_DSP](https://raw.githubusercontent.com/tecteun/ADAU1452_DSP/master/board.jpg "Logo ADAU1452_DSP")
+
+### rev 2
 ![ADAU1452_DSP](https://raw.githubusercontent.com/tecteun/ADAU1452_DSP/master/board2.jpg "Logo ADAU1452_DSP")
 
 
