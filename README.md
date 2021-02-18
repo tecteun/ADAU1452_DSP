@@ -43,3 +43,8 @@ Switch it to the other position while writing the firmware in Sigmastudio with
     - `EEPROM`
     - `SRAM`
     not both together. (`SS_M/MP0` does not have any select logic behind it)
+
+## Links
+
+    https://github.com/Ark-Linux/sigma-tcp
+    https://github.com/MCUdude/SigmaDSP
