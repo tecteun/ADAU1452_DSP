@@ -1,8 +1,17 @@
 # ADAU1452_DSP
 Chinese low cost eval board
+Supposedly based on 
+
+https://github.com/ohdsp/DSP-ADAU1452/blob/master/Drawings/Schematic/DSP-ADAU1452-2.0-Schematic.pdf
+(https://www.diyaudio.com/forums/digital-line-level/309680-low-cost-adau1452-china-board-2.html)
 
 ## Description
+
+### rev 1
 ![ADAU1452_DSP](https://raw.githubusercontent.com/tecteun/ADAU1452_DSP/master/board.jpg "Logo ADAU1452_DSP")
+
+### rev 2
+![ADAU1452_DSP](https://raw.githubusercontent.com/tecteun/ADAU1452_DSP/master/board2.jpg "Logo ADAU1452_DSP")
 
 
 ## EEPROM ID
@@ -30,3 +39,25 @@ The jumper in the picture is set to write protect.
 Switch it to the other position while writing the firmware in Sigmastudio with
 
 	'Self-boot memory -> Write latest Compilation through DSP'
+
+
+## Todo
+
+    Figure out how to use the unpopulated SRAM spot
+    with 23A1024 or similar
+    https://docs.rs-online.com/5f59/0900766b8114ca33.pdf
+    First tests show that this board is designed to use the ADAU1452 master SPI bus with either:
+    - `EEPROM`
+    - `SRAM`
+    not both together. (`SS_M/MP0` does not have any select logic behind it)
+
+## Links
+
+### Sigma-tcp with SPI
+
+https://github.com/Ark-Linux/sigma-tcp
+
+### Other
+
+- https://github.com/aventuri/sigma_tcp
+- https://github.com/MCUdude/SigmaDSP
