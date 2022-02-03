@@ -557,7 +557,7 @@ void setup(void) {
   ESPUI.begin("ADAU1452 control ui");
 }
 
-double drawVU(int param, byte x, double previous) {
+double drawVU(int param, int x, double previous) {
   if (NULL == previous) {
     previous = 0.;
   }
