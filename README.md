@@ -61,3 +61,4 @@ https://github.com/Ark-Linux/sigma-tcp
 
 - https://github.com/aventuri/sigma_tcp
 - https://github.com/MCUdude/SigmaDSP
+- https://ez.analog.com/dsp/sigmadsp/f/q-a/164008/sharing-tcpi-interface-for-sigma-studio-using-esp8266-or-esp32
