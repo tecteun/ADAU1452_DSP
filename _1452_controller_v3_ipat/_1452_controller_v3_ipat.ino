@@ -103,6 +103,16 @@ void float_to_fixed(float value, uint8_t *buffer)
   buffer[3] = fixedval & 0xFF;
 }
 
+//http://sigmadsp.epizy.com/?i=1
+uint32_t doubleToSigma( uint16_t family, double value ) {
+  switch ( family ) {
+    case 100: return  __builtin_bswap32 ( ( round( value * 0x800000) / 0x800000 ) * 0x800000 );
+    case 300: return  __builtin_bswap32 ( ( round( value * 0x1000000) / 0x1000000 ) * 0x1000000 );
+    case 303: return  ( round( value * 0x1000000) / 0x1000000 ) * 0x1000000 ;
+    default: return 0;
+  }
+}
+
 // Convert float 5.23 to 28.0
 int32_t float_to_int(int32_t value)
 {
@@ -285,6 +295,39 @@ void send(int param, int value) {
 
   SPI.endTransaction();
 }
+// send 5.23 float, fixed number format (value / 100) dsp 1.0 range
+void sendf(int param, double value) {
+  SPI.beginTransaction(SPISettings(22000000, MSBFIRST, SPI_MODE3));
+
+  digitalWrite(SS_PIN, LOW);
+  SPI.transfer(0b00000000); //== write //0x00000001 == read
+  SPI.transfer16(param);
+  uint32_t u32 = doubleToSigma(300, value); 
+  Serial.println(value);
+  
+   
+    
+  SPI.transfer(u32);
+  SPI.transfer(u32>>8);
+  SPI.transfer(u32>>16);
+  SPI.transfer(u32>>24);
+  
+  digitalWrite(SS_PIN, HIGH);
+
+  digitalWrite(SS_PIN, LOW);
+  SPI.transfer(0b00000000); //== write //0x00000001 == read
+  SPI.transfer16(MOD_INDIRECTPARAMACCESSMODULE_START_ADDRESS_ADDR);
+  SPI.transfer(int_to_bytes(param), 4);
+  digitalWrite(SS_PIN, HIGH);
+
+  digitalWrite(SS_PIN, LOW);
+  SPI.transfer(0b00000000); //== write //0x00000001 == read
+  SPI.transfer16(MOD_INDIRECTPARAMACCESSMODULE_NUM_OF_LOADS_AND_TRIGGER_ADDR);
+  SPI.transfer(int_to_bytes(1), 4);
+  digitalWrite(SS_PIN, HIGH);
+
+  SPI.endTransaction();
+}
 
 // send 5.23 integer format
 void send_523(int param, int value) {
@@ -387,63 +430,65 @@ void buttonCallback(Control sender, int type) {
 
 void handleControlChange(byte channel, byte number, byte value) {
 
-  Serial.println(number);
-  Serial.println(value);
+  //Serial.println(number);
+  //Serial.println(value);
+  //double meh = double(value) * (1.0/127.0);
+  //Serial.println(meh, 8);
   switch ((int)number) {
 
     case 8:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_SEND_1L_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_SEND_1L_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 9:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_SEND_1R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_SEND_1R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 10:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_SEND_2L_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_SEND_2L_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 11:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_SEND_2R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_SEND_2R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 12:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_SEND_3L_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_SEND_3L_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 13:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_SEND_3R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_SEND_3R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
 
     case 16:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_BUILTIN_1L_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_BUILTIN_1L_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 17:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_BUILTIN_1R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_BUILTIN_1R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 18:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_BUILTIN_2L_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_BUILTIN_2L_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 19:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_BUILTIN_2R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_BUILTIN_2R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 20:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_BUILTIN_3L_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_BUILTIN_3L_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 21:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_BUILTIN_3R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_FX_BUILTIN_3R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
 
 
     case 32:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2_1L_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2_1L_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 33:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2_1R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2_1R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 34:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2_1R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2_1R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 35:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2_2R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2_2R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 36:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2_3R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2_3R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 37:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2_3R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2_3R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
 
 
     case 40:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_1L_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_1L_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 41:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_1R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_1R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 42:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2L_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2L_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 43:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_2R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 44:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_3L_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_3L_TARGET_ADDR, double(value) * (1.0/127.0)); break;
     case 45:
-      send(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_3R_TARGET_ADDR, map(value, 0, 127, 0, 177827)/100); break;
+      sendf(MOD_INDIRECTPARAMACCESSMODULE_MASTER_DRY_3R_TARGET_ADDR, double(value) * (1.0/127.0)); break;
 
     case 15:
       send(MOD_INDIRECTPARAMACCESSMODULE_REVERB1_2_LOOP_GAIN_ADDR, map(value, 0, 127, 0, 150));
