@@ -33,12 +33,22 @@ I2C
     Write speed: 1000Khz (or lower)
     Number of Adress Bytes: 2
 
+#### For Lusya/Nvarcher V2 board (has spi flash)
+
+SPI
+	
+	Memory size: 1048576bits
+    Page size: 256bytes
+    Write speed: 10000Khz 
+    Number of Adress Bytes: 3
+
 ## Persist firmware with SigmaStudio
 
 The jumper in the picture is set to write protect.
 Switch it to the other position while writing the firmware in Sigmastudio with
 
 	'Self-boot memory -> Write latest Compilation through DSP'
+
 
 
 ## Todo
@@ -62,3 +72,4 @@ https://github.com/Ark-Linux/sigma-tcp
 - https://github.com/aventuri/sigma_tcp
 - https://github.com/MCUdude/SigmaDSP
 - https://ez.analog.com/dsp/sigmadsp/f/q-a/164008/sharing-tcpi-interface-for-sigma-studio-using-esp8266-or-esp32
+- https://www.diyaudio.com/community/threads/low-cost-adau1452-china-board.309680/page-17
