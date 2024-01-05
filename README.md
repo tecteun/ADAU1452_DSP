@@ -78,4 +78,4 @@ https://github.com/Ark-Linux/sigma-tcp
 
 ### Aim
 
-The Arduino/ESP32 side of project aims to be a midi controlled mixer, using a Bitstream 3x
+The Arduino/ESP32 _controller side of project aims to be a midi controlled mixer, using a Bitstream 3x
