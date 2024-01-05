@@ -24,7 +24,7 @@ https://github.com/ohdsp/DSP-ADAU1452/blob/master/Drawings/Schematic/DSP-ADAU145
     2EC=AT24C256C
     L= 1.7V min
 
-The EEPROM used differs between versions, it can bet I2C or SPI flash, so just check the actual chips datasheet for the below settings.
+The EEPROM used differs between versions, it can be I2C or SPI flash, so just check the actual chips datasheet for the below settings.
 
 ### SigmaStudio EEPROM properties
 
