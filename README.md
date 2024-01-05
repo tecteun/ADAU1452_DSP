@@ -75,3 +75,7 @@ https://github.com/Ark-Linux/sigma-tcp
 - https://github.com/MCUdude/SigmaDSP
 - https://ez.analog.com/dsp/sigmadsp/f/q-a/164008/sharing-tcpi-interface-for-sigma-studio-using-esp8266-or-esp32
 - https://www.diyaudio.com/community/threads/low-cost-adau1452-china-board.309680/page-17
+
+### Aim
+
+The project aims to be a midi controlled mixer, using a Bitstream 3x
